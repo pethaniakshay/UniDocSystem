@@ -4,7 +4,7 @@
     2. POARegestraion
 
  */
-package unidocregistration;
+package NewRegistration;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,7 +18,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 
-public class Regestration implements Initializable {
+public class Registration implements Initializable {
     
     //Common declaraions for all screen
     @FXML

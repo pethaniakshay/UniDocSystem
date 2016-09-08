@@ -55,12 +55,7 @@ public class LogInScreenController implements Initializable {
         stage.setScene(scene);
         stage.show();   
     }
-    
-    
-    
-    
-    
-    
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

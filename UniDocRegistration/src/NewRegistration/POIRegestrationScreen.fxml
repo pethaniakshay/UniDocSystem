@@ -11,12 +11,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="676.0" prefWidth="1111.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="unidocregistration.Regestration">
+<AnchorPane id="AnchorPane" prefHeight="676.0" prefWidth="1111.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NewRegistration.Registration">
    <children>
       <ImageView fitHeight="108.0" fitWidth="108.0" layoutX="1013.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@unidoc%20system_png_transparent.png" />
+            <Image url="@../unidocregistration/unidoc%20system_png_transparent.png" />
          </image>
       </ImageView>
       <Label layoutX="14.0" layoutY="14.0" text="Logged In As:" />

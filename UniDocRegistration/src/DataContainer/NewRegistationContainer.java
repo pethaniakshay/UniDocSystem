@@ -4,6 +4,8 @@
 package DataContainer;
 
 public class NewRegistationContainer {
- 
+    
+    public String EnrollmentNumber;
+    
     
 }

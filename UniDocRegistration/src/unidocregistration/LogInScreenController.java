@@ -49,7 +49,7 @@ public class LogInScreenController implements Initializable {
         Parent root;
         
         stage = (Stage) newregestraion.getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("POIRegestrationScreen.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/NewRegistration/POIRegestrationScreen.fxml"));
         
         Scene scene = new Scene(root);
         stage.setScene(scene);

@@ -2,7 +2,6 @@
     Controller of the following Screens:
     1. POIRegestraion
     2. POARegestraion
-
  */
 package NewRegistration;
 
@@ -42,7 +41,7 @@ public class Registration implements Initializable {
         if(event.getSource()==back){
             
             stage = (Stage) next.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("SelectionScreen.fxml"));    
+            root = FXMLLoader.load(getClass().getResource("/unidocregistration/SelectionScreen.fxml"));    
         }
         else if(event.getSource()==next){
             

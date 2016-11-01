@@ -5,7 +5,28 @@ package DataContainer;
 
 public class NewRegistationContainer {
     
-    public String EnrollmentNumber;
-    
-    
+    public String 
+                    enrollmentNumber,
+                    fullName,
+                    firstName,
+                    middleName,
+                    lastName,
+                    gender,
+                    registrationBase,
+                    maritalStatus,
+                    uidMother,
+                    uidFather,
+                    uidPartner,
+                    address,
+                    houseNo,
+                    street,
+                    area,
+                    village,
+                    postoffice,
+                    country,
+                    state,
+                    district,
+                    city,
+                    emailid,
+                    mobile;    
 }

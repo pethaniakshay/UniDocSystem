@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -52,16 +53,22 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <RadioButton layoutX="179.0" layoutY="260.0" mnemonicParsing="false" text="Male" />
-      <RadioButton layoutX="250.0" layoutY="260.0" mnemonicParsing="false" text="Female" />
-      <RadioButton layoutX="330.0" layoutY="260.0" mnemonicParsing="false" text="Other" />
+      <RadioButton layoutX="179.0" layoutY="260.0" mnemonicParsing="false" text="Male">
+         <toggleGroup>
+            <ToggleGroup fx:id="gndr" />
+         </toggleGroup></RadioButton>
+      <RadioButton layoutX="250.0" layoutY="260.0" mnemonicParsing="false" text="Female" toggleGroup="$gndr" />
+      <RadioButton layoutX="330.0" layoutY="260.0" mnemonicParsing="false" text="Other" toggleGroup="$gndr" />
       <Label layoutX="99.0" layoutY="299.0" text="Birth Date" textAlignment="RIGHT">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <RadioButton layoutX="179.0" layoutY="301.0" mnemonicParsing="false" text="Known" />
-      <RadioButton layoutX="251.0" layoutY="301.0" mnemonicParsing="false" text="Unknown" />
+      <RadioButton layoutX="179.0" layoutY="301.0" mnemonicParsing="false" selected="true" text="Known">
+         <toggleGroup>
+            <ToggleGroup fx:id="bdt" />
+         </toggleGroup></RadioButton>
+      <RadioButton layoutX="251.0" layoutY="301.0" mnemonicParsing="false" text="Unknown" toggleGroup="$bdt" />
       <AnchorPane layoutX="181.0" layoutY="320.0" prefHeight="50.0" prefWidth="197.0">
          <children>
             <DatePicker layoutY="14.0" />
@@ -72,10 +79,13 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <RadioButton layoutX="179.0" layoutY="381.0" mnemonicParsing="false" text="Parents" />
-      <RadioButton layoutX="260.0" layoutY="381.0" mnemonicParsing="false" text="Husband/Wife" />
-      <RadioButton layoutX="179.0" layoutY="414.0" mnemonicParsing="false" text="Gaurdian" />
-      <RadioButton layoutX="261.0" layoutY="414.0" mnemonicParsing="false" text="Other" />
+      <RadioButton layoutX="179.0" layoutY="381.0" mnemonicParsing="false" selected="true" text="Parents">
+         <toggleGroup>
+            <ToggleGroup fx:id="regbs" />
+         </toggleGroup></RadioButton>
+      <RadioButton layoutX="260.0" layoutY="381.0" mnemonicParsing="false" text="Husband/Wife" toggleGroup="$regbs" />
+      <RadioButton layoutX="179.0" layoutY="414.0" mnemonicParsing="false" text="Gaurdian" toggleGroup="$regbs" />
+      <RadioButton layoutX="261.0" layoutY="414.0" mnemonicParsing="false" text="Other" toggleGroup="$regbs" />
       <AnchorPane layoutX="108.0" layoutY="444.0" prefHeight="66.0" prefWidth="430.0">
          <children>
             <Label layoutX="25.0" layoutY="4.0" text="Mother's UID" textAlignment="RIGHT">
@@ -117,12 +127,15 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <RadioButton layoutX="693.0" layoutY="100.0" mnemonicParsing="false" text="Single" />
-      <RadioButton layoutX="774.0" layoutY="100.0" mnemonicParsing="false" text="Married" />
-      <RadioButton layoutX="856.0" layoutY="100.0" mnemonicParsing="false" text="Widowed" />
-      <RadioButton layoutX="693.0" layoutY="137.0" mnemonicParsing="false" text="Divorced" />
-      <RadioButton layoutX="774.0" layoutY="137.0" mnemonicParsing="false" text="Separated" />
-      <RadioButton layoutX="855.0" layoutY="137.0" mnemonicParsing="false" text="Undefined" />
+      <RadioButton layoutX="693.0" layoutY="100.0" mnemonicParsing="false" selected="true" text="Single">
+         <toggleGroup>
+            <ToggleGroup fx:id="mrtlsts" />
+         </toggleGroup></RadioButton>
+      <RadioButton layoutX="774.0" layoutY="100.0" mnemonicParsing="false" text="Married" toggleGroup="$mrtlsts" />
+      <RadioButton layoutX="856.0" layoutY="100.0" mnemonicParsing="false" text="Widowed" toggleGroup="$mrtlsts" />
+      <RadioButton layoutX="693.0" layoutY="137.0" mnemonicParsing="false" text="Divorced" toggleGroup="$mrtlsts" />
+      <RadioButton layoutX="774.0" layoutY="137.0" mnemonicParsing="false" text="Separated" toggleGroup="$mrtlsts" />
+      <RadioButton layoutX="855.0" layoutY="137.0" mnemonicParsing="false" text="Undefined" toggleGroup="$mrtlsts" />
       <AnchorPane layoutX="579.0" layoutY="160.0" prefHeight="50.0" prefWidth="359.0">
          <children>
             <Label layoutX="14.0" layoutY="15.0" text="Partener's UID" textAlignment="RIGHT">

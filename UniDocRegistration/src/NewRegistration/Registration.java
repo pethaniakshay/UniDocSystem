@@ -106,9 +106,7 @@ public class Registration implements Initializable {
             Logger.getLogger(LogInScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
-    
+     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //TODO   

@@ -1,33 +1,33 @@
 package UIDGenerator;
 
-import java.math.BigInteger;
-
 public class UID {
-    private void generateUID(int versionNumber, BigInteger availableLowest, BigInteger availableHighest) {
+    private void generateUID(byte versionNumber, long availableLowest, long availableHighest) {
         
-        int validationDigit;
-            
-        while(!availableLowest.equals(availableHighest)){
+        byte validationDigit;
+        String UID;
+       
+        while(availableLowest!=availableHighest){
             
             if(isValid(availableLowest)){
-               validationDigit= validationDigitOfVersionOne(convertToIntArray(availableLowest.toByteArray()));
-               
+               validationDigit= validationDigitOfVersionOne(convertToByteArray(availableLowest));  
+               UID = composeUID(versionNumber, availableLowest, validationDigit);                   
             }    
-            availableLowest = availableLowest.add(BigInteger.ONE);
+            availableLowest++;
         }       
     }
     
-    private boolean isValid(BigInteger bufferedNumber){
+    private boolean isValid(long bufferedNumber){
        
        boolean validity= true;
-       int operationalArray[] = convertToIntArray(bufferedNumber.toByteArray());
-       int countFrequency[] = new int[10];
+       byte operationalArray[] = convertToByteArray(bufferedNumber);
+       byte countFrequency[] = new byte[10];
+       byte i;
        
-       for(int i=0 ; i<countFrequency.length ; i++){
+       for(i=0 ; i<countFrequency.length ; i++){
            countFrequency[i]=0;
        }
        
-       for(int i=0 ; i<operationalArray.length ; i++){
+       for(i=0 ; i<operationalArray.length ; i++){
            countFrequency[operationalArray[i]]++; 
            if(countFrequency[operationalArray[i]]>=5){
                validity = false;       
@@ -36,30 +36,33 @@ public class UID {
        return validity;  
     }
     
-    private static int[] convertToIntArray(byte[] input)
+    private static byte[] convertToByteArray(long input)
     {
-        int[] ret = new int[input.length];
-        for (int i = 0; i < input.length; i++)
-        {
-            ret[i] = input[i]; 
+        byte[] convertedIntegrArray = new byte[10];
+        byte counter =9;
+        long temp;
+        while(counter>-1){
+            temp = input%10;
+            convertedIntegrArray[counter] =(byte) temp;       
+            input = input/10;  
+            counter--;
         }
-        return ret;
+        return convertedIntegrArray;
     }
     
-    private int validationDigitOfVersionOne(int[] bufferedNumber){
+    private byte validationDigitOfVersionOne(byte[] bufferedNumber){
         
-        int validationDigit=0;
-        int temp;
-        temp = bufferedNumber[1] + bufferedNumber[4] + bufferedNumber[7] + bufferedNumber[5];
+        byte validationDigit;
+        int temp= bufferedNumber[1] + bufferedNumber[4] + bufferedNumber[7] + bufferedNumber[5];
         validationDigit = digitSum(temp);
         return validationDigit;
     }
     
-    private int digitSum(int num){
-        int sum = 0;
+    private byte digitSum(int num){
+        byte sum = 0;
         while (num > 0)
         {
-            sum += num % 10;
+            sum +=(byte) num % 10;
             num /= 10;
         }
         if (sum > 9)
@@ -69,9 +72,28 @@ public class UID {
         return sum;
     }
     
-    private String composeUID(int versionNumber, BigInteger bufferedNumber, int validationDigit){
-        String UID="";
+    private String composeUID(byte versionNumber, long availableNumber, byte validationDigit){
         
+        String sversionNumber = Byte.toString(versionNumber);
+        String savailableNumber = Long.toString(availableNumber);
+        String svalidationDigit = Byte.toString(validationDigit);
+        
+        String tuid  = sversionNumber+savailableNumber+svalidationDigit;
+        
+        char suid[] = tuid.toCharArray();
+        
+        String UID = Character.toString(suid[5])+
+                     Character.toString(suid[9])+
+                     Character.toString(suid[1])+
+                     Character.toString(suid[11])+
+                     Character.toString(suid[6])+
+                     Character.toString(suid[8])+
+                     Character.toString(suid[2])+
+                     Character.toString(suid[4])+
+                     Character.toString(suid[0])+
+                     Character.toString(suid[7])+
+                     Character.toString(suid[10])+
+                     Character.toString(suid[3]);
         return UID;
     }
 }

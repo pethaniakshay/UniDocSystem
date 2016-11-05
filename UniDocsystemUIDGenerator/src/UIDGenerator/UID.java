@@ -1,19 +1,36 @@
 package UIDGenerator;
 
-public class UID {
-    private void generateUID(byte versionNumber, long availableLowest, long availableHighest) {
+import java.sql.*;
+
+public class UID  {
+    public void generateUID(byte versionNumber, long availableLowest, long availableHighest) throws Exception{
         
         byte validationDigit;
         String UID;
-       
+        long serialNumber=-1;
+        String sserialNumber;
+        long i;
+         
+            Class.forName("com.mysql.jdbc.Driver");  
+
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/UID","abc","abc");  
+
+            PreparedStatement stmt=con.prepareStatement("insert into uidbuffered_v1 values(?,?)");
+                  
         while(availableLowest!=availableHighest){
             
             if(isValid(availableLowest)){
                validationDigit= validationDigitOfVersionOne(convertToByteArray(availableLowest));  
-               UID = composeUID(versionNumber, availableLowest, validationDigit);                   
+               UID = composeUID(versionNumber, availableLowest, validationDigit);
+               serialNumber++;   
+               sserialNumber = Long.toString(serialNumber);
+               stmt.setString(1,sserialNumber);//1 specifies the first parameter in the query  
+               stmt.setString(2,UID);
+               i=stmt.executeUpdate();  
+               System.out.println(serialNumber+" UID generated using"+ availableLowest); 
             }    
-            availableLowest++;
-        }       
+            availableLowest++;          
+        }      
     }
     
     private boolean isValid(long bufferedNumber){
@@ -36,7 +53,7 @@ public class UID {
        return validity;  
     }
     
-    private static byte[] convertToByteArray(long input)
+    private byte[] convertToByteArray(long input)
     {
         byte[] convertedIntegrArray = new byte[10];
         byte counter =9;
@@ -53,7 +70,8 @@ public class UID {
     private byte validationDigitOfVersionOne(byte[] bufferedNumber){
         
         byte validationDigit;
-        int temp= bufferedNumber[1] + bufferedNumber[4] + bufferedNumber[7] + bufferedNumber[5];
+        int temp= bufferedNumber[1] + bufferedNumber[4] + bufferedNumber[7] + bufferedNumber[5]
+                + bufferedNumber[0]+ bufferedNumber[9] + bufferedNumber[8];
         validationDigit = digitSum(temp);
         return validationDigit;
     }
@@ -82,18 +100,151 @@ public class UID {
         
         char suid[] = tuid.toCharArray();
         
-        String UID = Character.toString(suid[5])+
-                     Character.toString(suid[9])+
+        String UID;
+
+        switch (validationDigit) {
+            case 1:
+                UID= Character.toString(suid[9])+
+                     Character.toString(suid[10])+
                      Character.toString(suid[1])+
                      Character.toString(suid[11])+
+                     Character.toString(suid[5])+
+                     Character.toString(suid[3])+
+                     Character.toString(suid[0])+
+                     Character.toString(suid[2])+
                      Character.toString(suid[6])+
                      Character.toString(suid[8])+
+                     Character.toString(suid[4])+
+                     Character.toString(suid[7]);
+                break;
+            case 2:
+                UID= Character.toString(suid[1])+
+                     Character.toString(suid[5])+
+                     Character.toString(suid[3])+
+                     Character.toString(suid[11])+
+                     Character.toString(suid[2])+
+                     Character.toString(suid[6])+
+                     Character.toString(suid[0])+
+                     Character.toString(suid[4])+
+                     Character.toString(suid[10])+
+                     Character.toString(suid[8])+
+                     Character.toString(suid[9])+
+                     Character.toString(suid[7]);
+                break;
+            case 3:
+                UID= Character.toString(suid[10])+
+                     Character.toString(suid[2])+
+                     Character.toString(suid[7])+
+                     Character.toString(suid[11])+
+                     Character.toString(suid[5])+
+                     Character.toString(suid[1])+
+                     Character.toString(suid[0])+
+                     Character.toString(suid[9])+
+                     Character.toString(suid[6])+
+                     Character.toString(suid[3])+
+                     Character.toString(suid[8])+
+                     Character.toString(suid[4]);
+                break;
+            case 4:
+                UID= Character.toString(suid[9])+
+                     Character.toString(suid[3])+
+                     Character.toString(suid[7])+
+                     Character.toString(suid[11])+
+                     Character.toString(suid[5])+
+                     Character.toString(suid[2])+
+                     Character.toString(suid[0])+
+                     Character.toString(suid[8])+
+                     Character.toString(suid[4])+
+                     Character.toString(suid[1])+
+                     Character.toString(suid[6])+
+                     Character.toString(suid[10]);
+                break;
+            case 5:
+                UID= Character.toString(suid[8])+
+                     Character.toString(suid[10])+
+                     Character.toString(suid[9])+
+                     Character.toString(suid[11])+
+                     Character.toString(suid[7])+
+                     Character.toString(suid[3])+
+                     Character.toString(suid[0])+
+                     Character.toString(suid[5])+
+                     Character.toString(suid[2])+
+                     Character.toString(suid[6])+
+                     Character.toString(suid[4])+
+                     Character.toString(suid[1]);
+                break;
+            case 6:
+                UID= Character.toString(suid[4])+
+                     Character.toString(suid[1])+
+                     Character.toString(suid[7])+
+                     Character.toString(suid[11])+
+                     Character.toString(suid[2])+
+                     Character.toString(suid[6])+
+                     Character.toString(suid[0])+
+                     Character.toString(suid[8])+
+                     Character.toString(suid[3])+
+                     Character.toString(suid[10])+
+                     Character.toString(suid[9])+
+                     Character.toString(suid[5]);
+                break;
+            case 7:
+                UID= Character.toString(suid[8])+
+                     Character.toString(suid[5])+
+                     Character.toString(suid[3])+
+                     Character.toString(suid[11])+
+                     Character.toString(suid[1])+
+                     Character.toString(suid[7])+
+                     Character.toString(suid[0])+
                      Character.toString(suid[2])+
                      Character.toString(suid[4])+
-                     Character.toString(suid[0])+
-                     Character.toString(suid[7])+
+                     Character.toString(suid[6])+
                      Character.toString(suid[10])+
-                     Character.toString(suid[3]);
+                     Character.toString(suid[9]);
+                break;
+            case 8:
+                UID= Character.toString(suid[10])+
+                     Character.toString(suid[2])+
+                     Character.toString(suid[9])+
+                     Character.toString(suid[11])+
+                     Character.toString(suid[3])+
+                     Character.toString(suid[5])+
+                     Character.toString(suid[0])+
+                     Character.toString(suid[6])+
+                     Character.toString(suid[1])+
+                     Character.toString(suid[7])+
+                     Character.toString(suid[4])+
+                     Character.toString(suid[8]);
+                break;
+            case 9:
+                UID= Character.toString(suid[9])+
+                     Character.toString(suid[3])+
+                     Character.toString(suid[7])+
+                     Character.toString(suid[11])+
+                     Character.toString(suid[5])+
+                     Character.toString(suid[2])+
+                     Character.toString(suid[0])+
+                     Character.toString(suid[8])+
+                     Character.toString(suid[4])+
+                     Character.toString(suid[1])+
+                     Character.toString(suid[6])+
+                     Character.toString(suid[10]);
+                break;
+            default:
+                UID= Character.toString(suid[1])+
+                     Character.toString(suid[3])+
+                     Character.toString(suid[9])+
+                     Character.toString(suid[11])+
+                     Character.toString(suid[2])+
+                     Character.toString(suid[8])+
+                     Character.toString(suid[0])+
+                     Character.toString(suid[4])+
+                     Character.toString(suid[6])+
+                     Character.toString(suid[5])+
+                     Character.toString(suid[7])+
+                     Character.toString(suid[10]);
+                break;
+        } 
+
         return UID;
     }
 }

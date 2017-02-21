@@ -12,7 +12,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="676.0" prefWidth="1111.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NewRegistration.Registration">
+<AnchorPane id="AnchorPane" accessibleRole="HYPERLINK" prefHeight="676.0" prefWidth="1111.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NewRegistration.Registration">
    <children>
       <ImageView fitHeight="108.0" fitWidth="108.0" layoutX="1013.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -26,7 +26,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField layoutX="181.0" layoutY="136.0" prefHeight="25.0" prefWidth="328.0" />
+      <TextField fx:id="coV" layoutX="181.0" layoutY="136.0" prefHeight="25.0" prefWidth="328.0" />
       <Button fx:id="back" layoutX="320.0" layoutY="619.0" mnemonicParsing="false" onAction="#POARegestration" prefHeight="25.0" prefWidth="108.0" text="Back">
          <font>
             <Font name="System Bold" size="15.0" />
@@ -52,80 +52,80 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="181.0" layoutY="186.0" prefHeight="25.0" prefWidth="328.0" />
-      <ComboBox layoutX="87.0" layoutY="136.0" prefHeight="25.0" prefWidth="81.0" promptText="C/o" />
+      <TextField fx:id="uidTakeFrom" layoutX="181.0" layoutY="186.0" prefHeight="25.0" prefWidth="328.0" />
+      <ComboBox fx:id="co" layoutX="87.0" layoutY="136.0" prefHeight="25.0" prefWidth="81.0" promptText="C/o" />
       <Label layoutX="29.0" layoutY="235.0" text="House No/Bldg./Apt." textAlignment="RIGHT">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField layoutX="181.0" layoutY="233.0" prefHeight="25.0" prefWidth="328.0" />
+      <TextField fx:id="houseNo" layoutX="181.0" layoutY="233.0" prefHeight="25.0" prefWidth="328.0" />
       <Label layoutX="51.0" layoutY="286.0" text="Street/Road/Lane" textAlignment="RIGHT">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField layoutX="181.0" layoutY="284.0" prefHeight="25.0" prefWidth="328.0" />
+      <TextField fx:id="street" layoutX="181.0" layoutY="284.0" prefHeight="25.0" prefWidth="328.0" />
       <Label layoutX="31.0" layoutY="335.0" text="Area/Locality/Sector" textAlignment="RIGHT">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField layoutX="181.0" layoutY="333.0" prefHeight="25.0" prefWidth="328.0" />
+      <TextField fx:id="area" layoutX="181.0" layoutY="333.0" prefHeight="25.0" prefWidth="328.0" />
       <Label layoutX="116.0" layoutY="381.0" text="Village" textAlignment="RIGHT">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField layoutX="181.0" layoutY="379.0" prefHeight="25.0" prefWidth="328.0" />
-      <Label layoutX="92.0" layoutY="422.0" text="Post Office" textAlignment="RIGHT">
+      <TextField fx:id="village" layoutX="181.0" layoutY="379.0" prefHeight="25.0" prefWidth="328.0" />
+      <Label layoutX="102.0" layoutY="422.0" text="Pin Code" textAlignment="RIGHT">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField layoutX="181.0" layoutY="420.0" prefHeight="25.0" prefWidth="328.0" />
+      <TextField fx:id="pinCode" layoutX="181.0" layoutY="420.0" prefHeight="25.0" prefWidth="328.0" />
       <Label layoutX="66.0" layoutY="477.0" text="Country" textAlignment="RIGHT">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <ComboBox layoutX="139.0" layoutY="475.0" prefHeight="25.0" prefWidth="134.0" promptText="India" />
+      <ComboBox fx:id="country" layoutX="139.0" layoutY="475.0" prefHeight="25.0" prefWidth="134.0" promptText="India" />
       <Label layoutX="294.0" layoutY="477.0" text="State" textAlignment="RIGHT">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <ComboBox layoutX="345.0" layoutY="475.0" prefHeight="25.0" prefWidth="164.0" promptText="Andhra Pradesh" />
+      <ComboBox fx:id="satate" layoutX="345.0" layoutY="475.0" prefHeight="25.0" prefWidth="164.0" promptText="Andhra Pradesh" />
       <Label layoutX="72.0" layoutY="522.0" text="District" textAlignment="RIGHT">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <ComboBox layoutX="139.0" layoutY="520.0" prefHeight="25.0" prefWidth="134.0" promptText="Rajkot" />
+      <ComboBox fx:id="district" layoutX="139.0" layoutY="520.0" prefHeight="25.0" prefWidth="134.0" promptText="Rajkot" />
       <Label layoutX="298.0" layoutY="522.0" text="City" textAlignment="RIGHT">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <ComboBox layoutX="345.0" layoutY="520.0" prefHeight="25.0" prefWidth="164.0" promptText="Jetpur" />
+      <ComboBox fx:id="city" layoutX="345.0" layoutY="520.0" prefHeight="25.0" prefWidth="164.0" promptText="Jetpur" />
       <Label layoutX="595.0" layoutY="138.0" text="Email ID" textAlignment="RIGHT">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField layoutX="676.0" layoutY="136.0" prefHeight="25.0" prefWidth="328.0" />
+      <TextField fx:id="emailId" layoutX="676.0" layoutY="136.0" prefHeight="25.0" prefWidth="328.0" />
       <Label layoutX="603.0" layoutY="188.0" text="Mobile" textAlignment="RIGHT">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField layoutX="676.0" layoutY="186.0" prefHeight="25.0" prefWidth="328.0" />
+      <TextField fx:id="mobileNo" layoutX="676.0" layoutY="186.0" prefHeight="25.0" prefWidth="328.0" />
       <Label layoutX="748.0" layoutY="231.0" text="Provided Documents">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Hyperlink fx:id="logout" layoutX="14.0" layoutY="33.0" onAction="#gotologOut" text="Log Out">
+      <Hyperlink fx:id="logout" layoutX="14.0" layoutY="33.0" onAction="#gotologOut" text="Log Out ">
          <textFill>
             <LinearGradient cycleMethod="REPEAT" endX="1.0" endY="1.0">
                <stops>
@@ -135,5 +135,26 @@
             </LinearGradient>
          </textFill>
       </Hyperlink>
+      <Label layoutX="616.0" layoutY="335.0" prefHeight="21.0" prefWidth="34.0" text="POA ">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="622.0" layoutY="297.0" prefHeight="21.0" prefWidth="34.0" text="POI">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="poi" layoutX="673.0" layoutY="295.0" prefWidth="150.0" />
+      <ComboBox fx:id="poa" layoutX="673.0" layoutY="333.0" prefWidth="150.0" />
+      <TextField fx:id="poiId" layoutX="841.0" layoutY="295.0" prefHeight="25.0" prefWidth="185.0" promptText="ID Number" />
+      <TextField fx:id="poaId" layoutX="841.0" layoutY="333.0" prefHeight="25.0" prefWidth="185.0" promptText="ID Number" />
+      <Label layoutX="616.0" layoutY="369.0" prefHeight="21.0" prefWidth="34.0" text="POB ">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="pob" layoutX="672.0" layoutY="369.0" prefWidth="150.0" />
+      <TextField fx:id="pobId" layoutX="841.0" layoutY="367.0" prefHeight="25.0" prefWidth="185.0" promptText="ID Number" />
    </children>
 </AnchorPane>

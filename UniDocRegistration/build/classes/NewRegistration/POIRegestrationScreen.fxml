@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
@@ -15,7 +14,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="676.0" prefWidth="1111.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NewRegistration.Registration">
+<AnchorPane id="AnchorPane" accessibleRole="HYPERLINK" onMouseEntered="#POIScreenInitialization" prefHeight="676.0" prefWidth="1111.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NewRegistration.Registration">
    <children>
       <ImageView fitHeight="108.0" fitWidth="108.0" layoutX="1013.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -24,26 +23,26 @@
       </ImageView>
       <Label layoutX="14.0" layoutY="14.0" text="Logged In As:" />
       <Label layoutX="98.0" layoutY="14.0" text="Akshay Pethani" />
-      <Label layoutX="99.0" layoutY="98.0" text="Full Name" textAlignment="RIGHT">
+      <Label layoutX="100.0" layoutY="213.0" text="Full Name" textAlignment="RIGHT">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField layoutX="179.0" layoutY="96.0" prefHeight="25.0" prefWidth="328.0" />
-      <Label layoutX="97.0" layoutY="135.0" text="First Name" textAlignment="RIGHT">
+      <TextField fx:id="firstName" layoutX="179.0" layoutY="96.0" prefHeight="25.0" prefWidth="328.0" />
+      <Label layoutX="97.0" layoutY="98.0" text="First Name" textAlignment="RIGHT">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField layoutX="179.0" layoutY="133.0" prefHeight="25.0" prefWidth="328.0" />
-      <TextField layoutX="179.0" layoutY="170.0" prefHeight="25.0" prefWidth="328.0" />
-      <TextField layoutX="179.0" layoutY="211.0" prefHeight="25.0" prefWidth="328.0" />
-      <Label layoutX="79.0" layoutY="172.0" text="Middle Name" textAlignment="RIGHT">
+      <TextField fx:id="middleName" layoutX="179.0" layoutY="133.0" prefHeight="25.0" prefWidth="328.0" />
+      <TextField fx:id="lastname" layoutX="179.0" layoutY="170.0" prefHeight="25.0" prefWidth="328.0" />
+      <TextField fx:id="fullName" layoutX="179.0" layoutY="211.0" prefHeight="25.0" prefWidth="328.0" />
+      <Label layoutX="80.0" layoutY="135.0" text="Middle Name" textAlignment="RIGHT">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="98.0" layoutY="213.0" text="Last Name" textAlignment="RIGHT">
+      <Label layoutX="98.0" layoutY="172.0" text="Last Name" textAlignment="RIGHT">
          <font>
             <Font size="15.0" />
          </font>
@@ -53,53 +52,60 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <RadioButton layoutX="179.0" layoutY="260.0" mnemonicParsing="false" text="Male">
+      <RadioButton fx:id="male" layoutX="179.0" layoutY="260.0" mnemonicParsing="false" text="Male">
          <toggleGroup>
             <ToggleGroup fx:id="gndr" />
          </toggleGroup></RadioButton>
-      <RadioButton layoutX="250.0" layoutY="260.0" mnemonicParsing="false" text="Female" toggleGroup="$gndr" />
-      <RadioButton layoutX="330.0" layoutY="260.0" mnemonicParsing="false" text="Other" toggleGroup="$gndr" />
+      <RadioButton fx:id="female" layoutX="250.0" layoutY="260.0" mnemonicParsing="false" text="Female" toggleGroup="$gndr" />
+      <RadioButton fx:id="other" layoutX="330.0" layoutY="260.0" mnemonicParsing="false" text="Other" toggleGroup="$gndr" />
       <Label layoutX="99.0" layoutY="299.0" text="Birth Date" textAlignment="RIGHT">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <RadioButton layoutX="179.0" layoutY="301.0" mnemonicParsing="false" selected="true" text="Known">
+      <RadioButton fx:id="birthDateaKnown" layoutX="179.0" layoutY="301.0" mnemonicParsing="false" onAction="#birthRadioButtonManagement" selected="true" text="Known">
          <toggleGroup>
             <ToggleGroup fx:id="bdt" />
          </toggleGroup></RadioButton>
-      <RadioButton layoutX="251.0" layoutY="301.0" mnemonicParsing="false" text="Unknown" toggleGroup="$bdt" />
-      <AnchorPane layoutX="181.0" layoutY="320.0" prefHeight="50.0" prefWidth="197.0">
-         <children>
-            <DatePicker layoutY="14.0" />
-         </children>
-      </AnchorPane>
+      <RadioButton fx:id="birthDateUnKnown" layoutX="178.0" layoutY="339.0" mnemonicParsing="false" onAction="#birthRadioButtonManagement" text="Unknown" toggleGroup="$bdt" />
       <Label layoutX="53.0" layoutY="379.0" text="Regestraion Base" textAlignment="RIGHT">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <RadioButton layoutX="179.0" layoutY="381.0" mnemonicParsing="false" selected="true" text="Parents">
+      <RadioButton fx:id="baseParents" layoutX="179.0" layoutY="381.0" mnemonicParsing="false" onAction="#registrationBaseRadioButtomManagement" selected="true" text="Parents">
          <toggleGroup>
             <ToggleGroup fx:id="regbs" />
          </toggleGroup></RadioButton>
-      <RadioButton layoutX="260.0" layoutY="381.0" mnemonicParsing="false" text="Husband/Wife" toggleGroup="$regbs" />
-      <RadioButton layoutX="179.0" layoutY="414.0" mnemonicParsing="false" text="Gaurdian" toggleGroup="$regbs" />
-      <RadioButton layoutX="261.0" layoutY="414.0" mnemonicParsing="false" text="Other" toggleGroup="$regbs" />
-      <AnchorPane layoutX="108.0" layoutY="444.0" prefHeight="66.0" prefWidth="430.0">
+      <RadioButton fx:id="baseHubWife" layoutX="260.0" layoutY="381.0" mnemonicParsing="false" onAction="#registrationBaseRadioButtomManagement" text="Husband/Wife" toggleGroup="$regbs" />
+      <RadioButton fx:id="baseGaurdian" layoutX="179.0" layoutY="414.0" mnemonicParsing="false" onAction="#registrationBaseRadioButtomManagement" text="Gaurdian" toggleGroup="$regbs" />
+      <RadioButton fx:id="baseOther" layoutX="261.0" layoutY="414.0" mnemonicParsing="false" onAction="#registrationBaseRadioButtomManagement" text="Other" toggleGroup="$regbs" />
+      <AnchorPane layoutX="108.0" layoutY="444.0" prefHeight="159.0" prefWidth="430.0">
          <children>
             <Label layoutX="25.0" layoutY="4.0" text="Mother's UID" textAlignment="RIGHT">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="123.0" layoutY="2.0" prefHeight="25.0" prefWidth="277.0" />
-            <Label layoutX="32.0" layoutY="33.0" text="Father's UID" textAlignment="RIGHT">
+            <TextField fx:id="uidMother" layoutX="123.0" layoutY="2.0" prefHeight="25.0" prefWidth="277.0" />
+            <Label layoutX="29.0" layoutY="49.0" text="Father's UID" textAlignment="RIGHT">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="123.0" layoutY="31.0" prefHeight="25.0" prefWidth="277.0" />
+            <TextField fx:id="uidFather" layoutX="123.0" layoutY="47.0" prefHeight="25.0" prefWidth="277.0" />
+            <Label layoutX="14.0" layoutY="95.0" text="Gaurdian's UID" textAlignment="RIGHT">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="uidGaurdian" layoutX="123.0" layoutY="93.0" prefHeight="25.0" prefWidth="277.0" />
+            <Label layoutX="46.0" layoutY="135.0" text="Other UID" textAlignment="RIGHT">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="uidOther" layoutX="123.0" layoutY="133.0" prefHeight="25.0" prefWidth="277.0" />
          </children>
       </AnchorPane>
       <Button fx:id="back" layoutX="320.0" layoutY="619.0" mnemonicParsing="false" onAction="#POIRegestration" prefHeight="25.0" prefWidth="108.0" text="Back">
@@ -112,7 +118,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="save" layoutX="568.0" layoutY="619.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Save">
+      <Button fx:id="save" layoutX="568.0" layoutY="619.0" mnemonicParsing="false" onAction="#POIRegestration" prefHeight="25.0" prefWidth="108.0" text="Save">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -127,15 +133,15 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <RadioButton layoutX="693.0" layoutY="100.0" mnemonicParsing="false" selected="true" text="Single">
+      <RadioButton fx:id="msSingle" layoutX="693.0" layoutY="100.0" mnemonicParsing="false" onAction="#registrationBaseRadioButtomManagement" selected="true" text="Single">
          <toggleGroup>
             <ToggleGroup fx:id="mrtlsts" />
          </toggleGroup></RadioButton>
-      <RadioButton layoutX="774.0" layoutY="100.0" mnemonicParsing="false" text="Married" toggleGroup="$mrtlsts" />
-      <RadioButton layoutX="856.0" layoutY="100.0" mnemonicParsing="false" text="Widowed" toggleGroup="$mrtlsts" />
-      <RadioButton layoutX="693.0" layoutY="137.0" mnemonicParsing="false" text="Divorced" toggleGroup="$mrtlsts" />
-      <RadioButton layoutX="774.0" layoutY="137.0" mnemonicParsing="false" text="Separated" toggleGroup="$mrtlsts" />
-      <RadioButton layoutX="855.0" layoutY="137.0" mnemonicParsing="false" text="Undefined" toggleGroup="$mrtlsts" />
+      <RadioButton fx:id="msMarried" layoutX="774.0" layoutY="100.0" mnemonicParsing="false" text="Married" toggleGroup="$mrtlsts" />
+      <RadioButton fx:id="msWidowed" layoutX="856.0" layoutY="100.0" mnemonicParsing="false" text="Widowed" toggleGroup="$mrtlsts" />
+      <RadioButton fx:id="msDivorced" layoutX="693.0" layoutY="137.0" mnemonicParsing="false" text="Divorced" toggleGroup="$mrtlsts" />
+      <RadioButton fx:id="msSeparated" layoutX="774.0" layoutY="137.0" mnemonicParsing="false" text="Separated" toggleGroup="$mrtlsts" />
+      <RadioButton fx:id="msUndefined" layoutX="855.0" layoutY="137.0" mnemonicParsing="false" text="Undefined" toggleGroup="$mrtlsts" />
       <AnchorPane layoutX="579.0" layoutY="160.0" prefHeight="50.0" prefWidth="359.0">
          <children>
             <Label layoutX="14.0" layoutY="15.0" text="Partener's UID" textAlignment="RIGHT">
@@ -143,30 +149,27 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="115.0" layoutY="13.0" prefHeight="25.0" prefWidth="240.0" />
+            <TextField fx:id="uidPartner" layoutX="115.0" layoutY="13.0" prefHeight="25.0" prefWidth="240.0" />
          </children>
       </AnchorPane>
-      <Label layoutX="636.0" layoutY="258.0" text="Photo" textAlignment="RIGHT">
+      <Label disable="true" layoutX="636.0" layoutY="258.0" text="Photo" textAlignment="RIGHT">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Button layoutX="693.0" layoutY="256.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="174.0" text="Capture Photo" />
-      <CheckBox layoutX="883.0" layoutY="260.0" mnemonicParsing="false" />
-      <Label layoutX="598.0" layoutY="310.0" text="Finger Print" textAlignment="RIGHT">
+      <Button disable="true" layoutX="693.0" layoutY="256.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="174.0" text="Capture Photo" />
+      <Label disable="true" layoutX="598.0" layoutY="310.0" text="Finger Print" textAlignment="RIGHT">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Button layoutX="693.0" layoutY="306.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="174.0" text="Take Finger Print" />
-      <CheckBox layoutX="883.0" layoutY="310.0" mnemonicParsing="false" />
-      <Label layoutX="622.0" layoutY="360.0" text="Iris Print" textAlignment="RIGHT">
+      <Button disable="true" layoutX="693.0" layoutY="306.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="174.0" text="Take Finger Print" />
+      <Label disable="true" layoutX="622.0" layoutY="360.0" text="Iris Print" textAlignment="RIGHT">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Button layoutX="693.0" layoutY="358.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="174.0" text="Take Iris Print" />
-      <CheckBox layoutX="883.0" layoutY="362.0" mnemonicParsing="false" />
+      <Button disable="true" layoutX="693.0" layoutY="358.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="174.0" text="Take Iris Print" />
       <Hyperlink fx:id="logout" layoutX="14.0" layoutY="33.0" onAction="#gotologOut" text="Log Out">
          <textFill>
             <LinearGradient cycleMethod="REPEAT" endX="1.0" endY="1.0">
@@ -177,5 +180,7 @@
             </LinearGradient>
          </textFill>
       </Hyperlink>
+      <DatePicker fx:id="birthDate" layoutX="269.0" layoutY="298.0" />
+      <TextField fx:id="estimatedYearOfBirth" layoutX="269.0" layoutY="335.0" promptText="Estimated Year" />
    </children>
 </AnchorPane>

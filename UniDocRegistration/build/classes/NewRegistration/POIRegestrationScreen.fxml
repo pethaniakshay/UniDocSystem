@@ -14,7 +14,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" accessibleRole="HYPERLINK" onMouseEntered="#POIScreenInitialization" prefHeight="676.0" prefWidth="1111.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NewRegistration.Registration">
+<AnchorPane id="AnchorPane" accessibleRole="HYPERLINK" prefHeight="676.0" prefWidth="1111.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NewRegistration.POIScreenController">
    <children>
       <ImageView fitHeight="108.0" fitWidth="108.0" layoutX="1013.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -113,7 +113,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="reset" layoutX="443.0" layoutY="619.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Reset">
+      <Button fx:id="reset" layoutX="443.0" layoutY="619.0" mnemonicParsing="false" onAction="#POIRegestration" prefHeight="25.0" prefWidth="108.0" text="Reset">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

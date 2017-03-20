@@ -3,7 +3,7 @@
  */
 package DataContainer;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class NewRegistationContainer {
     
@@ -13,10 +13,17 @@ public class NewRegistationContainer {
                     firstName,
                     middleName,
                     lastName,
+            
+                    gender,
+            
+                    registrationBase,
                     uidMother,
                     uidFather,
                     uidPartner,
                     uidGaurdian,
+                    uidOther,
+                    
+                    martialStatus,
                     
                     co,
                     uidTakeFrom,
@@ -24,26 +31,23 @@ public class NewRegistationContainer {
                     street,
                     area,
                     village,
+                    pincode,
+            
+                    country,
+                    state,
+                    district,
+                    city,
                     
                     emailid,
                     mobile,
             
                     poin,
                     pobn,
-                    poan;
+                    poan,
     
-   public LocalDate birthdate=null;
-   
-   public int estimatedyear,
-                    gender,
-                    maritalStatus,                    
-                    registrationBase,
-                    pincode,
-                    country,
-                    state,
-                    district,
-                    city,
                     poi,
                     poa,
-                    pob;  
+                    pob;
+    
+   public Date birthdate=null;                               
 }

@@ -1,24 +1,12 @@
-/*
-    Controller of the following Screens:
-    1. POIRegestraion
-    2. POARegestraion
- */
 package NewRegistration;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,17 +15,20 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import unidocregistration.LogInScreenController;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ComboBox;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import unidocregistration.LogInScreenController;
+import DataContainer.NewRegistationContainer;
+import java.time.ZoneId;
+import java.util.Calendar;
+import java.util.Date;
 
-public class Registration implements Initializable {
-      
+public class POIScreenController implements Initializable{
+   
     @FXML private AnchorPane poiL;
     @FXML private AnchorPane poaL;
     
@@ -108,7 +99,9 @@ public class Registration implements Initializable {
     @FXML private TextField poaId;
     @FXML private ComboBox pob;
     @FXML private TextField pobId;
-   
+    
+    NewRegistationContainer NRContainer = new NewRegistationContainer();
+        
     //code for POIRegestraion
     @FXML
     private void POIRegestration(ActionEvent event) throws Exception{
@@ -117,14 +110,83 @@ public class Registration implements Initializable {
           
         if(event.getSource()==next){    
             stage = (Stage) next.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("POARegestrationScreen.fxml")); 
+           
+            //root = FXMLLoader.load(getClass().getResource("POARegestrationScreen.fxml")); 
+            FXMLLoader loader = new FXMLLoader();
+            root = loader.load(getClass().getResource("POARegestrationScreen.fxml").openStream());
+            
+            POAScreenController poc = (POAScreenController) loader.getController();
+            poc.getNRContainer(NRContainer);
+            
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show(); 
         }
+            
         if (event.getSource()==save){
-            next.setDisable(false);   
+               
+              NRContainer.firstName = firstName.getText();
+              NRContainer.middleName = middleName.getText();
+              NRContainer.lastName = lastname.getText();
+              NRContainer.fullName = fullName.getText();
+
+              if(male.isSelected())NRContainer.gender = "Male"; 
+              if(female.isSelected())NRContainer.gender = "Female";
+              if(other.isSelected())NRContainer.gender = "Other";
+
+              if(birthDateaKnown.isSelected()){
+                  try{
+                      NRContainer.birthdate  = Date.from(birthDate.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+                  }
+                  catch(Exception e){
+                      System.out.println("Error: " + e + "   @#*");
+                  }   
+              }
+
+              if(birthDateUnKnown.isSelected()){
+
+                  int year = Integer.parseInt(estimatedYearOfBirth.getText());
+
+                  Calendar cal = Calendar.getInstance();
+                  Date today = cal.getTime();
+                  cal.add(Calendar.YEAR,(-1*year));
+
+                  NRContainer.birthdate = cal.getTime();
+              }
+
+              if(baseParents.isSelected()){
+                  NRContainer.registrationBase = "Paretns";
+                  NRContainer.uidMother = uidMother.getText();
+                  NRContainer.uidFather = uidFather.getText();
+              }
+
+              if(baseHubWife.isSelected()){
+                  if(male.isSelected())NRContainer.registrationBase = "Wife";
+                  if(female.isSelected())NRContainer.registrationBase = "Husband";
+                  NRContainer.uidPartner = uidPartner.getText();    
+              }
+
+              if(baseGaurdian.isSelected()){
+                  NRContainer.registrationBase = "Gaurdian";
+                  NRContainer.uidGaurdian = uidGaurdian.getText();
+              }
+
+              if(baseOther.isSelected()){
+                  NRContainer.registrationBase = "Other";
+                  NRContainer.uidOther = uidOther.getText();
+              }
+
+              if(msSingle.isSelected())NRContainer.martialStatus = "Single";
+              if(msSeparated.isSelected())NRContainer.martialStatus = "Separated";
+              if(msWidowed.isSelected())NRContainer.martialStatus = "Widowed";
+              if(msMarried.isSelected())NRContainer.martialStatus = "Married";
+              if(msUndefined.isSelected())NRContainer.martialStatus = "Undefined";
+
+              NRContainer.uidPartner = uidPartner.getText();
+          
+          next.setDisable(false);   
         }
+        
         if(event.getSource()==back){   
             stage = (Stage) back.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("/unidocregistration/SelectionScreen.fxml"));  
@@ -174,33 +236,6 @@ public class Registration implements Initializable {
         }    
     }
     
-    //code for POARegestraion
-    @FXML
-    private void POARegestration(ActionEvent event) throws Exception{
-        Stage stage;
-        Parent root;
-        
-        if(event.getSource()==back){
-            
-            stage = (Stage) next.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("POIRegestrationScreen.fxml"));    
-        }
-        else if(event.getSource()==next){
-            
-            stage = (Stage) next.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("DocVerificationScreen.fxml"));     
-        }
-        else{
-            stage = (Stage) next.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("DocVerificationScreen.fxml"));     
-        }
-        
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();    
-    }
-        
-    //For Logout Button
     @FXML
     private void gotologOut(ActionEvent event){
         try{             
@@ -213,97 +248,12 @@ public class Registration implements Initializable {
             Logger.getLogger(LogInScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    //Invoc when POIRegisrtation screen starts. bind with the On Mouse Entered event of the Layout
-    @FXML 
-    private void POIScreenInitialization(MouseEvent event){
+     
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {  
         next.setDisable(true);
         estimatedYearOfBirth.setDisable(true);
         uidGaurdian.setDisable(true);
         uidOther.setDisable(true);
-    }
-    
-    @FXML
-    private void POAScreenInitialization(MouseEvent event){
-        try {
-           Class.forName("com.mysql.jdbc.Driver");
-           Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sdc","abcde","12345");
-           Statement stmt = con.createStatement();
-           
-           //Initialization of combox of state list
-           ResultSet rs = stmt.executeQuery("select name from state;");
-           while(rs.next())
-            {
-                System.out.println(rs.getString(1));
-                slist.add(rs.getString(1));
-            }
-           ObservableList<String> olist = FXCollections.observableList(slist);
-           state.setValue("State");
-           state.setItems(olist);
-           
-       } catch (ClassNotFoundException | SQLException ex) {
-           Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
-       }
-    }
-    
-    @FXML
-   private void stateSelection(ActionEvent event) throws Exception{
-          
-       dlist.clear();
-       
-       Class.forName("com.mysql.jdbc.Driver");
-       Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sdc","abcde","12345");
-       Statement stmt = con.createStatement();
-       
-       //detecting the sr no of state
-       String svalue = (String) state.getValue();
-       ResultSet getStateId = stmt.executeQuery("select sr from state where name = '"+ svalue +"';" );
-       int stateId =0;
-       
-       while(getStateId.next()){
-           stateId = getStateId.getInt(1);
-       }
-      
-       ResultSet rs = stmt.executeQuery("select name from district where stateNo = '"+ stateId +"';");
-                  
-       while(rs.next())
-       {
-           dlist.add(rs.getString(1));
-       }
-       ObservableList<String> olist = FXCollections.observableList(dlist);
-       district.setValue("District");
-       district.setItems(olist);
-   }
-      
-   @FXML
-   private void districtSelection(ActionEvent event) throws Exception{
-       clist.clear();
-       
-       Class.forName("com.mysql.jdbc.Driver");
-       Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sdc","abcde","12345");
-       Statement stmt = con.createStatement();
-       
-       //detecting the sr no of state
-       String dvalue = (String) district.getValue();
-       ResultSet getDistrictId = stmt.executeQuery("select sr from district where name = '"+ dvalue +"';" );
-       int districtId =0;
-       
-       while(getDistrictId.next()){
-           districtId = getDistrictId.getInt(1);
-       }
-      
-       ResultSet rs = stmt.executeQuery("select name from city where distNo = '"+ districtId +"';");
-                  
-       while(rs.next())
-       {
-           clist.add(rs.getString(1));
-       }
-       ObservableList<String> olist = FXCollections.observableList(clist);
-       city.setValue("City");
-       city.setItems(olist);
-   }
-           
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {    
     }
 }

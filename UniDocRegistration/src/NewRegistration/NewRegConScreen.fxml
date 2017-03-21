@@ -293,17 +293,17 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Button fx:id="back" layoutX="431.0" layoutY="597.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Back">
+      <Button fx:id="back" layoutX="431.0" layoutY="597.0" mnemonicParsing="false" onAction="#newRegConScreen" prefHeight="25.0" prefWidth="108.0" text="Back">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="submit" layoutX="508.0" layoutY="488.0" mnemonicParsing="false" onAction="#submitDataToServer" prefHeight="31.0" prefWidth="114.0" text="Submit">
+      <Button fx:id="submit" layoutX="508.0" layoutY="488.0" mnemonicParsing="false" onAction="#submitDataToServer" prefHeight="23.0" prefWidth="114.0" text="Submit">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="next" layoutX="603.0" layoutY="597.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Next">
+      <Button fx:id="next" layoutX="603.0" layoutY="597.0" mnemonicParsing="false" onAction="#newRegConScreen" prefHeight="25.0" prefWidth="108.0" text="Next">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

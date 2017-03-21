@@ -13,9 +13,9 @@ public class UID  {
          
             Class.forName("com.mysql.jdbc.Driver");  
 
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/UID","abc","abc");  
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/UID","root","");  
 
-            PreparedStatement stmt=con.prepareStatement("insert into uidbuffered_v1 values(?,?)");
+            PreparedStatement stmt=con.prepareStatement("insert into uidbuffered values(?,?)");
                   
         while(availableLowest!=availableHighest){
             
@@ -24,7 +24,7 @@ public class UID  {
                UID = composeUID(versionNumber, availableLowest, validationDigit);
                serialNumber++;   
                sserialNumber = Long.toString(serialNumber);
-               stmt.setString(1,sserialNumber);//1 specifies the first parameter in the query  
+               stmt.setString(1,sserialNumber);
                stmt.setString(2,UID);
                i=stmt.executeUpdate();  
                System.out.println(serialNumber+" UID generated using"+ availableLowest); 

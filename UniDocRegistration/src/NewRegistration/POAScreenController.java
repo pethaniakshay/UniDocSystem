@@ -110,6 +110,7 @@ public class POAScreenController implements Initializable{
     
     NewRegistationContainer NRContainer = new NewRegistationContainer();
     
+    
     //code for POARegestraion
     @FXML
     private void POARegestration(ActionEvent event) throws Exception{

@@ -3,6 +3,11 @@ package NewRegistration;
 import DataContainer.NewRegistationContainer;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -68,6 +73,10 @@ public class NewRegConScreen implements Initializable {
     
     NewRegistationContainer NRContainer = new NewRegistationContainer();
     
+    boolean isSubmit = false;
+    
+    
+    
     @FXML
     private void gotologOut(ActionEvent event){
         try{             
@@ -123,10 +132,84 @@ public class NewRegConScreen implements Initializable {
     }
     
     
-    @FXML
-    private void submitDataToServer(ActionEvent event){
+    @FXML 
+    private void newRegConScreen(ActionEvent event) throws IOException{
+        Stage stage;
+        Parent root;
         
-     
+        if(event.getSource()==back){
+            
+            stage = (Stage) back.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("POARegestrationScreen.fxml")); 
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        
+        if(event.getSource()==next){
+            
+            stage = (Stage) next.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("/unidocregistration/SelectionScreen.fxml")); 
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        
+    }
+    
+    @FXML
+    private void submitDataToServer(ActionEvent event) throws ClassNotFoundException, SQLException{
+        
+        if(isSubmit==false){
+            
+            String SQLStatement = "insert into newregistereddata values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+            Class.forName("com.mysql.jdbc.Driver");
+            try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/unidocsystem","root","")) {
+                PreparedStatement stmt = con.prepareStatement(SQLStatement);
+                
+                stmt.setString(1,NRContainer.firstName);
+                stmt.setString(2,NRContainer.middleName);
+                stmt.setString(3,NRContainer.lastName);
+                stmt.setString(4,NRContainer.fullName);
+                stmt.setString(5,NRContainer.gender);
+                stmt.setDate(6,new java.sql.Date(NRContainer.birthdate.getTime()));
+                stmt.setString(7,NRContainer.registrationBase);
+                stmt.setString(8,NRContainer.uidMother);
+                stmt.setString(9,NRContainer.uidFather);
+                stmt.setString(10,NRContainer.uidGaurdian);
+                stmt.setString(11,NRContainer.uidOther);
+                stmt.setString(12,NRContainer.martialStatus);
+                stmt.setString(13,NRContainer.uidPartner);
+                stmt.setString(14,NRContainer.co);
+                stmt.setString(15,NRContainer.uidTakeFrom);
+                stmt.setString(16,NRContainer.houseNo);
+                stmt.setString(17,NRContainer.street);
+                stmt.setString(18,NRContainer.area);
+                stmt.setString(19,NRContainer.village);
+                stmt.setString(20,NRContainer.pincode);
+                stmt.setString(21,NRContainer.city);
+                stmt.setString(22,NRContainer.district);
+                stmt.setString(23,NRContainer.state);
+                stmt.setString(24,NRContainer.country);
+                stmt.setString(25,NRContainer.emailid);
+                stmt.setString(26,NRContainer.mobile);
+                stmt.setString(27,NRContainer.poi);
+                stmt.setString(28,NRContainer.poin);
+                stmt.setString(29,NRContainer.pob);
+                stmt.setString(30,NRContainer.pobn);
+                stmt.setString(31,NRContainer.poa);
+                stmt.setString(32,NRContainer.poan);
+                
+                stmt.executeUpdate();
+                
+                submitConf.setText("Data Succefully Uploaded On ther server");
+            }
+           
+            isSubmit = true;
+        }
+        else{
+            submitConf.setText("Data Aleready Uploaded On ther server");
+        }    
     }
     
     @Override

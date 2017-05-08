@@ -162,7 +162,7 @@ public class NewRegConScreen implements Initializable {
         
         if(isSubmit==false){
             
-            String SQLStatement = "insert into newregistereddata values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+            String SQLStatement = "insert into newregistereddata values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NULL);";
             Class.forName("com.mysql.jdbc.Driver");
             try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/unidocsystem","root","")) {
                 PreparedStatement stmt = con.prepareStatement(SQLStatement);
@@ -199,6 +199,9 @@ public class NewRegConScreen implements Initializable {
                 stmt.setString(30,NRContainer.pobn);
                 stmt.setString(31,NRContainer.poa);
                 stmt.setString(32,NRContainer.poan);
+                stmt.setString(33,"no");
+                //stmt.setInt(34, null);
+              
                 
                 stmt.executeUpdate();
                 
